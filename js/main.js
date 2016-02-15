@@ -35,7 +35,7 @@ function setCookie(name, value, options) {
 }
 
 function load(imgId) {
-	$("#taskImg").attr("src", "img/" + imgId + ".png");
+	$("#taskImg").attr("src", "img/" + imgId + ".PNG");
 }
 
 var tasks = [
