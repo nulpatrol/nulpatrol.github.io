@@ -1,3 +1,7 @@
+function loadEndScreen() {
+	$(".inner").html("<h1>Finish</h1><img style=\"width:400px;\" src=\"img/finish.jpg\">");
+}
+
 function getCookie(name) {
   var matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -39,31 +43,30 @@ function load(imgId) {
 }
 
 var tasks = [
-	{img: 51, answer: "d"}, 
-	{img: 52, answer: "e"},
-	{img: 53, answer: "b"},
-	{img: 54, answer: "a"},
-	{img: 55, answer: "b"},
-	{img: 56, answer: "c"},
-	{img: 57, answer: "e"},
-	{img: 58, answer: "c"},
-	{img: 59, answer: "a"},
-	{img: 510, answer: "a"},
-	{img: 511, answer: "a"},
-	{img: 512, answer: "e"},
-	{img: 513, answer: "d"},
-	{img: 514, answer: "c"},
-	{img: 515, answer: "c"},
-	{img: 516, answer: "b"},
-	{img: 517, answer: "e"},
-	{img: 518, answer: "d"},
-	{img: 519, answer: "d"},
-	{img: 520, answer: "c"},
-	{img: 521, answer: "d"},
-	{img: 522, answer: "e"},
-	{img: 523, answer: "a"},
-	{img: 524, answer: "a"},
-	{img: 525, answer: "d"},
+	{img: 81, answer: "d"}, 
+	{img: 82, answer: "e"},
+	{img: 83, answer: "c"},
+	{img: 84, answer: "a"},
+	{img: 85, answer: "c"},
+	{img: 86, answer: "d"},
+	{img: 87, answer: "b"},
+	{img: 88, answer: "b"},
+	{img: 89, answer: "d"},
+	{img: 810, answer: "c"},
+	{img: 811, answer: "b"},
+	{img: 812, answer: "d"},
+	{img: 813, answer: "a"},
+	{img: 814, answer: "a"},
+	{img: 815, answer: "e"},
+	{img: 816, answer: "c"},
+	{img: 817, answer: "d"},
+	{img: 818, answer: "a"},
+	{img: 819, answer: "e"},
+	{img: 820, answer: "b"},
+	{img: 821, answer: "d"},
+	{img: 822, answer: "c"},
+	{img: 823, answer: "b"},
+	{img: 824, answer: "d"},
 ];
 
 $(document).ready(function() {
@@ -84,6 +87,10 @@ $(document).ready(function() {
 		checkedRadio.prop('checked', false);
 
 		taskId++;
+		if (taskId + 1 >= tasks.length) {
+			loadEndScreen();
+			setCookie("taskId", 0);
+		}
 		load(tasks[taskId].img);
 		setCookie("taskId", taskId);
 	});
