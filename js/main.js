@@ -9,6 +9,11 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function wrongAnswer(i) {
+	var answers = ["Неправильно", "Знову неправильно", "І вкотре неправильно"];
+	$("#answer").text(" - " + answers[i % 3] + "!");
+}
+
 function setCookie(name, value, options) {
   options = options || {};
 
@@ -40,6 +45,8 @@ function setCookie(name, value, options) {
 
 function load(imgId) {
 	$("#taskImg").attr("src", "img/" + imgId + ".PNG");
+	$("#num").text(imgId);
+	$("#answer").text("");
 }
 
 var tasks = [
@@ -70,6 +77,8 @@ var tasks = [
 
 $(document).ready(function() {
 	var taskId = getCookie("taskId");
+	var wrongAnswerId = 0;
+	
 	if (taskId == undefined) {
 		taskId = 0;
 	} else {
@@ -80,7 +89,7 @@ $(document).ready(function() {
 		checkedRadio = $("input[name=answer]:checked");
 		userAns = checkedRadio.val();
 		if (userAns != tasks[taskId].answer) {
-			alert("Неправильно!"); 
+			wrongAnswer(wrongAnswerId++);
 			return false;
 		}
 		checkedRadio.prop('checked', false);
