@@ -1,54 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<style type="text/css">
-		* { margin: 0; padding: 0; border: 0; }
-		body { background-image: url("img/stripe.png"); font-family: Consolas; }
-		.outer {
-		    display: table;
-		    position: absolute;
-		    height: 100%;
-		    width: 100%;
-		}
-
-		.middle {
-		    display: table-cell;
-		    vertical-align: middle;
-		}
-
-		.inner {
-		    margin-left: auto;
-		    margin-right: auto; 
-		    width: 710px;
-		    height: 360px;
-		    background-color: #6699CC;
-			background-image: url("img/stripe_light.png");
-		    box-shadow: 0 0 20px rgba(0,0,0,1);
-		    border-radius: 10px;
-		    padding: 20px;
-		}
-		img { width: 708px; border: 1px black solid;; }
-		.task {
-			width: 710px;
-			height: 220px;
-		}
-		.answers {
-			width: 708px;
-			background-color: #DCEFF5;
-			border-radius: 10px;
-			height: 90px;
-			box-shadow: 0 0 20px rgba(0,0,0,1);
-			border: 1px black solid;
-		}
-		h1 {
-			margin-bottom: 10px; font-size: 20px;
-		}
-		td { width: 355px; height: 28px; text-align: center; }
-		button { height: 30px; }
-		input[type="radio"] { margin-right: 5px; }
-		input[type="button"] { background-color: #6699CC; border-radius: 5px; padding: 2px; }
-		#answer { color: red; }
-	</style>
+	<link rel="stylesheet" href="css/style.css" />
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<title>Тестировочная система</title>
@@ -65,15 +18,30 @@
 				<div class="answers">
 					<table>
 						<tr>
-							<td><input type="radio" name="answer" value="a" />А</td>
-							<td><input type="radio" name="answer" value="b" />Б</td>
+							<td>
+								<input type="radio" name="answer" value="a" id="radio01" />
+								<label for="radio01"><span></span>А</label>
+							</td>
+							<td>
+								<input type="radio" name="answer" value="b" id="radio02" />
+								<label for="radio02"><span></span>Б</label>
+							</td>
 						</tr>
 						<tr>
-							<td><input type="radio" name="answer" value="c" />В</td>
-							<td><input type="radio" name="answer" value="d" />Г</td>
+							<td>
+								<input type="radio" name="answer" value="c" id="radio03" />
+								<label for="radio03"><span></span>В</label>
+							</td>
+							<td>
+								<input type="radio" name="answer" value="d" id="radio04" />
+								<label for="radio04"><span></span>Г</label>
+							</td>
 						</tr>
 						<tr>
-							<td><input type="radio" name="answer" value="e" />Д</td>
+							<td>
+								<input type="radio" name="answer" value="e" id="radio05" />
+								<label for="radio05"><span></span>Д</label>
+							</td>
 							<td><input id="button" type="button" value="Відповісти" /></td>
 						</tr>
 					</table>

@@ -88,10 +88,13 @@ $(document).ready(function() {
 	$("#button").click(function() {
 		checkedRadio = $("input[name=answer]:checked");
 		userAns = checkedRadio.val();
+		console.log(userAns);
+		console.log(tasks[taskId].answer);
 		if (userAns != tasks[taskId].answer) {
+			console.log("wrong");
 			wrongAnswer(wrongAnswerId++);
 			return false;
-		}
+		} 
 		checkedRadio.prop('checked', false);
 
 		taskId++;
