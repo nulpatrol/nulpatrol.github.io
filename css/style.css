@@ -105,6 +105,10 @@ input[type="button"] {
 	font-weight: bold;
 }
 
+#miss {
+	background-color: red; 
+}
+
 #answer { 
 	color: red; 
 }
