@@ -1,4 +1,7 @@
 var answers = "babd";
+var missedTasks = [];
+var loadMissed = false;
+var taskId = parseInt(getCookie("taskId"));
 
 function loadEndScreen() {
 	$(".inner").html("<h1>Finish</h1><img style=\"width:400px;\" src=\"img/finish.jpg\">");
@@ -17,7 +20,7 @@ function parseHash() {
  */
 function wrongAnswer(i) {
 	var answers = ["Неправильно", "Знову неправильно", "І вкотре неправильно"];
-	$("#answer").text(" - " + answers[i % 3] + "!");
+	$("#answer").css("color", "red").text(" - " + answers[i % 3] + "!");
 }
 
 function notAnswer() {
@@ -25,26 +28,29 @@ function notAnswer() {
 }
 
 function load(tid, theme) {
-	if (tid > answers.length) {
-		loadEndScreen();
-		setCookie("taskId", 1);
-		return;
+	if (loadMissed) {
+		tid = missedTasks.shift();
+		taskId = tid;
 	}
-	setCookie("taskId", taskId);
+	if (tid > answers.length || tid == null) {
+		if (missedTasks.length == 0) {
+			loadEndScreen();
+			setCookie("taskId", 1);
+			return;
+		} else {
+			loadMissed = true;
+			tid = missedTasks.shift();
+			taskId = tid;
+		}
+	}
+	setCookie("taskId", tid);
 	wrongAnswerId = 0;
 	$("#taskImg").attr("src", "img/" + theme + "/" + tid + ".png");
 	$("#num").text(tid);
 	$("#answer").text("");
 }
 
-function parse(a) {
-	
-}
-
-var missedTasks = [];
-
 $(document).ready(function() {
-	var taskId = parseInt(getCookie("taskId"));
 	var wrongAnswerId = 0;
 	var params = parseHash();
 	var theme = params[0];
@@ -65,14 +71,12 @@ $(document).ready(function() {
 			notAnswer();
 			return false;
 		}
-
 		if (userAns != answers[taskId - 1]) {
 			wrongAnswer(wrongAnswerId++);
 			return false;
 		} 
 		
 		checkedRadio.prop('checked', false);
-
 		load(++taskId, theme);
 	});
 
@@ -80,5 +84,4 @@ $(document).ready(function() {
 		missedTasks.push(taskId);
 		load(++taskId, theme);
 	});
-
 });
