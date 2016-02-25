@@ -24,10 +24,16 @@ function notAnswer() {
 	$("#answer").css("color", "yellow").text(" - спершу оберіть варіант!");
 }
 
-function load(imgId, theme) {
-	console.log(imgId, theme);
-	$("#taskImg").attr("src", "img/" + theme + "/" + imgId + ".png");
-	$("#num").text(imgId);
+function load(tid, theme) {
+	if (tid > answers.length) {
+		loadEndScreen();
+		setCookie("taskId", 1);
+		return;
+	}
+	setCookie("taskId", taskId);
+	wrongAnswerId = 0;
+	$("#taskImg").attr("src", "img/" + theme + "/" + tid + ".png");
+	$("#num").text(tid);
 	$("#answer").text("");
 }
 
@@ -64,21 +70,15 @@ $(document).ready(function() {
 			wrongAnswer(wrongAnswerId++);
 			return false;
 		} 
+		
 		checkedRadio.prop('checked', false);
 
-		taskId++;
-		if (taskId > answers.length) {
-			loadEndScreen();
-			setCookie("taskId", 1);
-		}
-		wrongAnswerId = 0;
-		load(taskId, theme);
-		setCookie("taskId", taskId);
+		load(++taskId, theme);
 	});
 
 	$("#miss").click(function() {
 		missedTasks.push(taskId);
-		load(taskId, theme);
+		load(++taskId, theme);
 	});
 
 });
