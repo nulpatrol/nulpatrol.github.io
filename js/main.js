@@ -20,6 +20,10 @@ function wrongAnswer(i) {
 	$("#answer").text(" - " + answers[i % 3] + "!");
 }
 
+function notAnswer() {
+	$("#answer").css("color", "yellow").text(" - спершу оберіть варіант!");
+}
+
 function load(imgId, theme) {
 	console.log(imgId, theme);
 	$("#taskImg").attr("src", "img/" + theme + "/" + imgId + ".png");
@@ -30,6 +34,8 @@ function load(imgId, theme) {
 function parse(a) {
 	
 }
+
+var missedTasks = [];
 
 $(document).ready(function() {
 	var taskId = parseInt(getCookie("taskId"));
@@ -49,6 +55,11 @@ $(document).ready(function() {
 		checkedRadio = $("input[name=answer]:checked");
 		userAns = checkedRadio.val();
 
+		if (userAns == undefined) {
+			notAnswer();
+			return false;
+		}
+
 		if (userAns != answers[taskId - 1]) {
 			wrongAnswer(wrongAnswerId++);
 			return false;
@@ -60,8 +71,14 @@ $(document).ready(function() {
 			loadEndScreen();
 			setCookie("taskId", 1);
 		}
+		wrongAnswerId = 0;
 		load(taskId, theme);
 		setCookie("taskId", taskId);
+	});
+
+	$("#miss").click(function() {
+		missedTasks.push(taskId);
+		load(taskId, theme);
 	});
 
 });
