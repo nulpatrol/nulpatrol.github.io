@@ -21,6 +21,7 @@ function wrongAnswer(i) {
 }
 
 function load(imgId, theme) {
+	console.log(imgId, theme);
 	$("#taskImg").attr("src", "img/" + theme + "/" + imgId + ".png");
 	$("#num").text(imgId);
 	$("#answer").text("");
@@ -37,6 +38,8 @@ $(document).ready(function() {
 	var theme = params[0];
 	var task = params[1];
 	
+	if (task != undefined) 
+		taskId = task;
 	if (taskId == undefined || isNaN(taskId))
 		taskId = 1;
 
