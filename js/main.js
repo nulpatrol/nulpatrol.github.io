@@ -1,4 +1,8 @@
-var answers = "dbecaebeecaddecbdacdab";
+var answers = "dcaeecedadedbcddebdba";
+var tips = [
+	"Сума двох сторін трикутника завжди більша, ніж третя сторона. УВАГА: це потрібно перевірити для кожної сторони",
+	"Сума кутів трикутника - 180 градусів",
+];
 var missedTasks = [];
 var loadMissed = false;
 var taskId = parseInt(getCookie("taskId"));
@@ -83,5 +87,9 @@ $(document).ready(function() {
 	$("#miss").click(function() {
 		missedTasks.push(taskId);
 		load(++taskId, theme);
+	});
+
+	$("#tip").click(function() {
+		alert(tips[taskId - 1]);
 	});
 });

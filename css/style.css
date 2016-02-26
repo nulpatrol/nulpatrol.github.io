@@ -25,7 +25,7 @@ body {
 	margin-left: auto;
 	margin-right: auto; 
 	width: 710px;
-	height: 360px;
+	min-height: 360px;
 	background-color: #6699CC;
 	background-image: url("../img/stripe_light.png");
 	box-shadow: 0 0 20px rgba(0,0,0,1);
@@ -40,7 +40,7 @@ img {
 
 .task {
 	width: 710px;
-	height: 220px;
+	min-height: 220px;
 }
 
 .answers {
@@ -111,4 +111,9 @@ input[type="button"] {
 
 #answer { 
 	color: red; 
+}
+
+#tip {
+	background-color: yellow;
+	color: black;
 }
