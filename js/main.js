@@ -5,6 +5,7 @@ var tips = [
 ];
 var missedTasks = [];
 var loadMissed = false;
+var isReturn = 0;
 var taskId = parseInt(getCookie("taskId"));
 
 function loadEndScreen() {
@@ -32,12 +33,12 @@ function notAnswer() {
 }
 
 function load(tid, theme) {
-	if (loadMissed) {
+	if (loadMissed && isReturn == 1) {
 		tid = missedTasks.shift();
 		taskId = tid;
 	}
 	if (tid > answers.length || tid == null) {
-		if (missedTasks.length == 0) {
+		if (missedTasks.length == 0 || isReturn == 0) {
 			loadEndScreen();
 			setCookie("taskId", 1);
 			return;
@@ -59,6 +60,7 @@ $(document).ready(function() {
 	var params = parseHash();
 	var theme = params[0];
 	var task = params[1];
+	isReturn = params[2];
 	
 	if (task != undefined) 
 		taskId = task;
