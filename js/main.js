@@ -18,14 +18,14 @@ function makeSelect(options, header) {
 	styleSelect(newSelect);
 }
 
-function selectChange(value, id) {
-	alert(id);
+function selectChange(value) {
+	console.log(value);
+	alert(value);
 }
 
 function styleSelect(scope) {
 	var $this = $(scope), numberOfOptions = $(scope).children('option').length;
-	console.log(numberOfOptions);
-    $this.addClass('select-hidden'); 
+	$this.addClass('select-hidden'); 
     $this.wrap('<div class="select"></div>');
     $this.after('<div class="select-styled"></div>');
 
@@ -57,7 +57,7 @@ function styleSelect(scope) {
         e.stopPropagation();
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));
-		selectChange($this.val(), $this.attr("id"));
+		selectChange($this.val());
         $list.hide();
     });
   
