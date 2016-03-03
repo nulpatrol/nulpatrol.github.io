@@ -1,4 +1,4 @@
-var answers = "dcaeecedadedbcddebdba";
+var answers = "dcdeaaebdeaecaebbdcbdbb";
 var tips = [
 	"Сума двох сторін трикутника завжди більша, ніж третя сторона. УВАГА: це потрібно перевірити для кожної сторони",
 	"Сума кутів трикутника - 180 градусів",
