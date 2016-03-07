@@ -207,3 +207,7 @@ select {
 .select-options li[rel="hide"] {
   display: none;
 }
+
+.finishImg {
+    width: 400px;
+}

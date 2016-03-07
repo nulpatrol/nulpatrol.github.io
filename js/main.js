@@ -1,9 +1,33 @@
-var answers = "dcaeecedadedbcddebdba";
+var missedTasks = [];
+var loadMissed = false;
+var isReturn = 0;
+var taskId = parseInt(getCookie("taskId"));
 
-var topics = [
-	{ "id" : 1, "theme": "Похідні" },
-	{ "id" : 2, "theme": "Інтеграли" },
-];
+/**
+ * Write one of "wrong answer" messages
+ * @param int i - number of message
+ */
+function wrongAnswer(i) {
+	var answers = ["Неправильно", "Знову неправильно", "І вкотре неправильно"];
+	$("#answer").css("color", "red").text(" - " + answers[i % 3] + "!");
+}
+
+/**
+ * Write message if answer is not choosed
+ */
+function notAnswer() {
+	$("#answer").css("color", "yellow").text(" - спершу оберіть варіант!");
+}
+
+/**
+ * Render screen on test completion
+ */
+function loadEndScreen() {
+	var container = $('.inner');
+	container.html('');
+	$('<h1 />').text('Finish').appendTo(container);
+	$('<img />').addClass('finishImg').attr('src', 'img/finish.jpg').appendTo(container);
+}
 
 function makeSelect(options, header) {
 	var newSelect = $('<select />');
@@ -68,37 +92,13 @@ function styleSelect(scope) {
 
 }
 
-var tips = [
-	"Сума двох сторін трикутника завжди більша, ніж третя сторона. УВАГА: це потрібно перевірити для кожної сторони",
-	"Сума кутів трикутника - 180 градусів",
-];
-var missedTasks = [];
-var loadMissed = false;
-var isReturn = 0;
-var taskId = parseInt(getCookie("taskId"));
 
-function loadEndScreen() {
-	$(".inner").html("<h1>Finish</h1><img style=\"width:400px;\" src=\"img/finish.jpg\">");
-}
 
 function parseHash() {
 	var hash = window.location.hash || "";
 	if (hash.length < 2) return "";
 	var params = hash.substring(1).split('-');
 	return params;
-}
-
-/**
- * Write one of "wrong answer" messages
- * @param int i - number of message
- */
-function wrongAnswer(i) {
-	var answers = ["Неправильно", "Знову неправильно", "І вкотре неправильно"];
-	$("#answer").css("color", "red").text(" - " + answers[i % 3] + "!");
-}
-
-function notAnswer() {
-	$("#answer").css("color", "yellow").text(" - спершу оберіть варіант!");
 }
 
 function load(tid, theme) {
@@ -119,7 +119,7 @@ function load(tid, theme) {
 	}
 	setCookie("taskId", tid);
 	wrongAnswerId = 0;
-	$("#taskImg").attr("src", "img/" + theme + "/" + tid + ".png");
+	$('#taskImg').attr("src", "img/" + theme + "/" + tid + ".png");
 	$("#num").text(tid);
 	$("#answer").text("");
 }
