@@ -25,13 +25,18 @@ function notAnswer() {
 function loadEndScreen() {
 	var container = $('.inner');
 	container.html('');
-	$('<h1 />').text('Finish').appendTo(container);
+	$('<h1 />').text('Тест завершено').appendTo(container);
 	$('<img />').addClass('finishImg').attr('src', 'img/finish.jpg').appendTo(container);
 }
 
+/**
+ * Create select
+ * @param array options - options in select
+ * @param string header - header of select
+ */
 function makeSelect(options, header) {
 	var newSelect = $('<select />');
-	newSelect.appendTo(".inner");
+	newSelect.appendTo('.innerStart');
 	
 	$('<option />', { value: "hide", text: header }).appendTo(newSelect);
 	
@@ -39,15 +44,13 @@ function makeSelect(options, header) {
 		$('<option />', { value: item.id, text: item.theme }).appendTo(newSelect);
 	});
 	
-	styleSelect(newSelect);
+	customizeSelect(newSelect, function(val) {
+		alert('Value: ' + val);
+	});
 }
 
-function selectChange(value) {
-	console.log(value);
-	alert(value);
-}
 
-function styleSelect(scope) {
+function customizeSelect(scope, handler) {
 	var $this = $(scope), numberOfOptions = $(scope).children('option').length;
 	$this.addClass('select-hidden'); 
     $this.wrap('<div class="select"></div>');
@@ -56,9 +59,7 @@ function styleSelect(scope) {
     var $styledSelect = $this.next('div.select-styled');
     $styledSelect.text($this.children('option').eq(0).text());
   
-    var $list = $('<ul />', {
-        'class': 'select-options'
-    }).insertAfter($styledSelect);
+    var $list = $('<ul />', {'class': 'select-options'}).insertAfter($styledSelect);
   
     for (var i = 0; i < numberOfOptions; i++) {
         $('<li />', {
@@ -81,7 +82,7 @@ function styleSelect(scope) {
         e.stopPropagation();
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));
-		selectChange($this.val());
+		handler($this.val());
         $list.hide();
     });
   
@@ -89,10 +90,7 @@ function styleSelect(scope) {
         $styledSelect.removeClass('active');
         $list.hide();
     });
-
 }
-
-
 
 function parseHash() {
 	var hash = window.location.hash || "";

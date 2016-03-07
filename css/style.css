@@ -211,3 +211,7 @@ select {
 .finishImg {
     width: 400px;
 }
+
+.innerTestA, .innerStart {
+	display: none;
+}
