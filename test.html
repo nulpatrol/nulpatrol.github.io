@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Styles -->
+	<link rel="stylesheet" href="skins/_all.css" />
+	<link rel="stylesheet" href="skins/custom.css" />
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/icheck.min.js"></script>
+	<title>Тестировочная система</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<div class="outer skin-line">
+		<div class="skin-section">
+	  <ul class="list">
+	    <li>
+	      <input tabindex="19" type="radio" id="line-radio-1" name="line-radio">
+	      <label for="line-radio-1"> </label>
+	    </li>
+	    <li>
+	      <input tabindex="20" type="radio" id="line-radio-2" name="line-radio" checked>
+	      <label for="line-radio-2">Radio button 2</label>
+	    </li>
+	  </ul>
+	  </div>
+	</div>
+<script>
+$(document).ready(function(){
+  $('input').each(function(){
+    var self = $(this),
+      label = self.next(),
+      label_text = label.text();
+
+    label.remove();
+    self.iCheck({
+      checkboxClass: 'icheckbox_line-red',
+      radioClass: 'iradio_line-red',
+      insert: '<div class="icheck_line-icon"></div>' + label_text
+    });
+  });
+});
+</script>
+</body>
+</html>
