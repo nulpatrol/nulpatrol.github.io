@@ -3,6 +3,28 @@ var loadMissed = false;
 var isReturn = 0;
 var taskId = parseInt(getCookie("taskId"));
 
+function check(str) {
+    var tmp = {};
+    for(var i = str.length-1; i >= 0; i--) {
+        var c = str.charAt(i);
+        if(c in tmp) {
+            tmp[c] += 1;
+        }
+        else {
+            tmp[c] = 1;
+        }
+    }
+    var result = {};
+    for(c in tmp) {
+        if(tmp.hasOwnProperty(c)) {
+            if(tmp[c] > 1){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 /**
  * Write one of "wrong answer" messages
  * @param int i - number of message
@@ -139,7 +161,16 @@ $(document).ready(function() {
 
 	load(taskId, theme);
 
-	$("#button").click(function() {
+	$("#confirmB").click(function() {
+		ans1 = $("input[name=typeb-1]:checked");
+		ans2 = $("input[name=typeb-2]:checked");
+		ans3 = $("input[name=typeb-3]:checked");
+		ans4 = $("input[name=typeb-4]:checked");
+		ansString = ans1.val() + ans2.val() + ans3.val() + ans4.val();
+		console.log(check(ansString));
+	});
+
+	$("#confirm").click(function() {
 		checkedRadio = $("input[name=answer]:checked");
 		userAns = checkedRadio.val();
 
