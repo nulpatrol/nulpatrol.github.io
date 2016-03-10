@@ -11,6 +11,10 @@ body {
 	font-family: Consolas; 
 }
 
+.clear {
+    clear: both;
+}
+
 .outer {
 	display: table;
 	position: absolute;
@@ -49,7 +53,7 @@ img {
 	width: 708px;
 	background-color: #DCEFF5;
 	border-radius: 10px;
-	height: 90px;
+	min-height: 90px;
 	box-shadow: 0 0 20px rgba(0,0,0,1);
 	border: 1px black solid;
 }
@@ -59,60 +63,43 @@ h1 {
 	font-size: 20px;
 }
 
-td { 
-	width: 355px; 
+table { margin-left: 10px; }
+
+td {  
 	height: 28px; 
 	text-align: center; 
+}
+
+.typeA td {
+    width: 355px;
 }
 
 button { 
 	height: 30px; 
 }
 
-input[type="radio"] { 
-	margin-right: 5px; 
-    display:none;
-}
+input[type="radio"] { margin-right: 5px; display:none; }
+input[type="radio"] + label { color: #292321; font-size:14px; font-weight: bold; }
+input[type="radio"] + label span { display:inline-block; width:19px; height:19px; margin:-1px 4px 0 0; vertical-align:middle; cursor:pointer; -moz-border-radius: 50%; border-radius:  50%; }
+input[type="radio"] + label span { background-color:#292321; }
+input[type="radio"]:checked + label span { background-color: #3B69F5; }
 
-input[type="radio"] + label {
-    color: #292321;
-    font-size:14px;
-	font-weight: bold;
+.buttons {
+    float:right; margin-top: 10px;
 }
-
-input[type="radio"] + label span {
-    display:inline-block;
-    width:19px;
-    height:19px;
-    margin:-1px 4px 0 0;
-    vertical-align:middle;
-    cursor:pointer;
-    -moz-border-radius:  50%;
-    border-radius:  50%;
-}
-
-input[type="radio"] + label span {
-    background-color:#292321;
-}
-
-input[type="radio"]:checked + label span{
-    background-color: #3B69F5;
-}
-
-input[type="button"] { 
-	background-color: #3B69F5; 
-	border-radius: 5px; 
-	padding: 2px; 
-	color: white;
-	font-weight: bold;
-}
+input[type="button"] { border-radius: 5px; padding: 7px; color: white; font-weight: bold; }
+input[type="button"]:hover { box-shadow: 0 0 20px rgba(0,0,0,1); }
 
 #miss {
 	background-color: red; 
 }
 
+#confirm {
+  background-color: #3B69F5;
+}
+
 #answer { 
-	color: red; 
+    color: red; 
 }
 
 #tip {
@@ -212,6 +199,14 @@ select {
     width: 400px;
 }
 
-.innerTestA, .innerStart {
-	display: none;
+.innerTestA {
+	/*display: none;*/
+}
+
+.innerTestB {
+  display: none;
+}
+
+.innerStart {
+  display: none;
 }
