@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Head -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css">
+    <link rel="stylesheet" href="bower_components/mdi/materialdesignicons.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster&subset=cyrillic">
+</head>
+<body>
+<div class="card bgc-blue-500 tc-blue-grey-50">
+    <div class="toolbar">
+        <i class="icon icon--l icon--green icon--circled mdi mdi-chart-line"></i>&nbsp;&nbsp;
+        <span class="toolbar__label fs-title np-title">Моніторинг успішності</span>
+        <nav>
+            <ul>
+                <li><a href="index.html">Графіки</a></li>
+                <li><a class="active" href="list.html">Переможці</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="tc-white-1" flex-container="row" flex-align="center">
+    <div flex-item="12" class="p+">
+        <div class="data-table-container bgc-white-1 tc-black-1">
+            <table class="data-table data-table--has-primary">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Ім'я</th>
+                    <th>Навчальний заклад</th>
+                    <th>Предмет</th>
+                    <th>Місце</th>
+                </tr>
+                </thead>
+
+                <tbody ng-controller="List">
+                <tr class="data-table__clickable-row" ng-repeat="item in items">
+                    <td style="width:15%">
+                        <img class="list-primary-tile__img ava" src="imgs/{{ item.id }}.jpg">
+                    </td>
+                    <td style="width:15%">
+                        <span><strong>{{ item.name }}</strong></span>
+                    </td>
+                    <td style="width:35%">
+                        <span>{{ item.school }}</span>
+                    </td>
+                    <td style="width:15%">
+                        <span>{{ item.subject }}</span>
+                    </td>
+                    <td style="width:10%">
+                        <span><i class="icon icon--l icon--circled mdi mdi-numeric-{{ item.place }}-box-outline place{{ item.place }}"></i></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/velocity/velocity.js"></script>
+<script src="bower_components/moment/min/moment-with-locales.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/lumx/dist/lumx.js"></script>
+<script src="js/app.js"></script>
+</html>
